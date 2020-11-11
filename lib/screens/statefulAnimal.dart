@@ -31,7 +31,10 @@ class _StatefulAnimalState extends State<StatefulAnimalWidget> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      drawer:  NavDrawer(this.loggedInUser),
+      drawer:  SideMenu(
+          onLogoutChanged: (){logoutAndGoToLogin(context);},
+          loggedUser: this.loggedInUser
+      ),
       appBar: AppBar(
         title:Text('ZampApp'),
       ),

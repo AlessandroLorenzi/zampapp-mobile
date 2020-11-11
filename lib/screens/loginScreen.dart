@@ -7,6 +7,7 @@ import 'package:zampapp_mobile/zampappapi/zampappapi.dart';
 class LoginScreen extends StatelessWidget {
   final TextEditingController txtLogin = TextEditingController();
   final TextEditingController txtPassword = TextEditingController();
+
   BuildContext context;
 
   @override

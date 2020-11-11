@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:zampapp_mobile/models/user.dart';
 
-class NavDrawer extends StatelessWidget {
+class SideMenu extends StatelessWidget {
   final User loggedUser;
+  final VoidCallback onLogoutSelected;
+  final Function() onLogoutChanged;
 
-  NavDrawer(this.loggedUser);
+
+  SideMenu({
+    @required this.onLogoutChanged,
+    @required this.loggedUser,
+    this.onLogoutSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,8 @@ class NavDrawer extends StatelessWidget {
               color: Colors.black,
               image: DecorationImage(
                 fit: BoxFit.cover,
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.5), BlendMode.dstATop),
                 image: NetworkImage(loggedUser.picture),
               ),
             ),
@@ -53,10 +61,14 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: (){
+                onLogoutChanged();
+                Navigator.of(context).pop();
+            },
           ),
         ],
       ),
     );
   }
+
 }
